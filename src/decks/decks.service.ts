@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Card } from 'src/cards/entities/card.entity';
 import { Repository } from 'typeorm';
 import { CreateDeckDto } from './dto/create-deck.dto';
 import { Deck } from './entities/deck.entity';
@@ -34,10 +33,6 @@ export class DecksService implements IDecksService {
     }
 
     return deck;
-  }
-
-  drawCard(deck: Deck): Card {
-    return deck.cards.pop();
   }
 
   findOne(id: string): Promise<Deck> {

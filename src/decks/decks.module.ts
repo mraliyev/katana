@@ -3,6 +3,8 @@ import { DecksService } from './decks.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Deck } from './entities/deck.entity';
 import { DECKS_SERVICE } from './interfaces/decks.interface';
+import { DecksController } from './decks.controller';
+import { CardsModule } from 'src/cards/cards.module';
 
 const DecksProvider = {
   provide: DECKS_SERVICE,
@@ -10,8 +12,8 @@ const DecksProvider = {
 };
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Deck])],
-  controllers: [],
+  imports: [TypeOrmModule.forFeature([Deck]), CardsModule],
+  controllers: [DecksController],
   providers: [DecksService, DecksProvider],
   exports: [DecksService, DecksProvider],
 })

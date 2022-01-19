@@ -1,4 +1,3 @@
-import { Card } from 'src/cards/entities/card.entity';
 import { CreateDeckDto } from '../dto/create-deck.dto';
 import { Deck } from '../entities/deck.entity';
 
@@ -12,6 +11,4 @@ export interface IDecksService {
   findOne(id: string): Promise<Deck>;
 
   shuffle(deck: Deck): Deck;
-
-  drawCard(deck: Deck): Card;
 }

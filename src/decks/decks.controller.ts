@@ -2,21 +2,25 @@ import {
   Body,
   Controller,
   Get,
+  Inject,
   Param,
   ParseUUIDPipe,
   Post,
 } from '@nestjs/common';
-import { CardsService } from './cards/cards.service';
-import { DrawCardDto } from './cards/dto/draw-card.dto';
-import { DecksService } from './decks/decks.service';
-import { CreateDeckDto } from './decks/dto/create-deck.dto';
-import { ResponseDataDto } from './decks/dto/response-data.dto';
+import { DrawCardDto } from 'src/cards/dto/draw-card.dto';
+import {
+  CARDS_SERVICE,
+  ICardsService,
+} from 'src/cards/interfaces/cards.interface';
+import { CreateDeckDto } from './dto/create-deck.dto';
+import { ResponseDataDto } from './dto/response-data.dto';
+import { DECKS_SERVICE, IDecksService } from './interfaces/decks.interface';
 
 @Controller('decks')
-export class AppController {
+export class DecksController {
   constructor(
-    private readonly decksService: DecksService,
-    private readonly cardsService: CardsService,
+    @Inject(DECKS_SERVICE) private readonly decksService: IDecksService,
+    @Inject(CARDS_SERVICE) private readonly cardsService: ICardsService,
   ) {}
 
   @Post()
