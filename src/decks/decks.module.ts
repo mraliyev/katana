@@ -14,7 +14,7 @@ const DecksProvider = {
 @Module({
   imports: [TypeOrmModule.forFeature([Deck]), CardsModule],
   controllers: [DecksController],
-  providers: [DecksService, DecksProvider],
-  exports: [DecksService, DecksProvider],
+  providers: [DecksProvider],
+  exports: [DecksProvider],
 })
 export class DecksModule {}
