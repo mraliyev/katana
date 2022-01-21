@@ -29,22 +29,25 @@ export class CardsService implements ICardsService {
       'King',
     ];
 
-    for (const suit in suits) {
-      for (const value in values) {
-        const curValue = values[value];
-        const curSuit = suits[suit];
-        const curCode =
-          +curValue > 0 ? curValue + curSuit[0] : curValue[0] + curSuit[0];
+    return new Promise((resolve) => {
+      for (const suit in suits) {
+        for (const value in values) {
+          const curValue = values[value];
+          const curSuit = suits[suit];
+          const curCode =
+            +curValue > 0 ? curValue + curSuit[0] : curValue[0] + curSuit[0];
 
-        const card: Card = {
-          value: curValue,
-          suit: curSuit,
-          code: curCode,
-        };
+          const card: Card = {
+            value: curValue,
+            suit: curSuit,
+            code: curCode,
+          };
 
-        cards.push(card);
+          cards.push(card);
+        }
       }
-    }
-    return Promise.resolve(cards);
+
+      return resolve(cards);
+    });
   }
 }
