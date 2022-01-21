@@ -34,25 +34,29 @@ export class DecksController {
     }
     const deckModel = await this.decksService.save(deck);
 
-    return {
+    const result: ResponseDataDto = {
       deckId: deckModel.id,
       type: createDeckDto.type,
       shuffled: createDeckDto.shuffled,
       remaining: cards.length,
-    } as ResponseDataDto;
+    };
+
+    return result;
   }
 
   @Get(':uuid')
   async openDeck(@Param('uuid', new ParseUUIDPipe()) id: string) {
     const deckModel = await this.decksService.findOne(id);
 
-    return {
+    const result: ResponseDataDto = {
       deckId: deckModel.id,
       type: deckModel.type,
       shuffled: deckModel.shuffled,
       remaining: deckModel.cards.length,
       cards: deckModel.cards,
-    } as ResponseDataDto;
+    };
+
+    return result;
   }
 
   @Get(':uuid/draw/:count')
